@@ -1,0 +1,109 @@
+# ============================================================
+# CarbonCore quest definitions
+# type:   KILL   - kill entities (target: entity type or ANY)
+#         MINE   - break blocks   (target: material or ANY)
+#         FISH   - fish items     (target: material or ANY)
+#         LOGIN  - log into the server
+#         TRADE  - trade with villagers (target: ANY)
+#         COMPLETE - count of other quests completed
+# reset:  daily | weekly | none
+# ============================================================
+quests:
+
+  first_blood:
+    enabled: true
+    type: KILL
+    target: ANY
+    goal: 10
+    reset: daily
+    reward:
+      money: 50.0
+      items:
+        - material: BREAD
+          amount: 8
+      commands: []
+
+  zombie_hunter:
+    enabled: true
+    type: KILL
+    target: ZOMBIE
+    goal: 25
+    reset: daily
+    reward:
+      money: 120.0
+      items:
+        - material: IRON_INGOT
+          amount: 2
+      commands: []
+
+  miner_100:
+    enabled: true
+    type: MINE
+    target: ANY
+    goal: 100
+    reset: daily
+    reward:
+      money: 80.0
+      items:
+        - material: TORCH
+          amount: 32
+      commands: []
+
+  iron_age:
+    enabled: true
+    type: MINE
+    target: IRON_ORE
+    goal: 30
+    reset: weekly
+    reward:
+      money: 300.0
+      items: []
+      commands: []
+
+  dedicated_fisher:
+    enabled: true
+    type: FISH
+    target: ANY
+    goal: 15
+    reset: weekly
+    reward:
+      money: 200.0
+      items:
+        - material: COD
+          amount: 10
+      commands: []
+
+  regular_player:
+    enabled: true
+    type: LOGIN
+    target: ANY
+    goal: 5
+    reset: weekly
+    reward:
+      money: 100.0
+      items: []
+      commands: []
+
+  merchant_friend:
+    enabled: true
+    type: TRADE
+    target: ANY
+    goal: 10
+    reset: weekly
+    reward:
+      money: 150.0
+      items: []
+      commands: []
+
+  quest_collector:
+    enabled: true
+    type: COMPLETE
+    target: ANY
+    goal: 5
+    reset: none
+    reward:
+      money: 500.0
+      items:
+        - material: DIAMOND
+          amount: 1
+      commands: []

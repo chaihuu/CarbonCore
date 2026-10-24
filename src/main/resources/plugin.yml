@@ -1,0 +1,132 @@
+name: CarbonCore
+version: '${version}'
+main: xyz.chaihu.carboncore.CarbonCorePlugin
+api-version: '1.20'
+authors: [chaihu]
+description: CarbonCore - Bank, RedPacket, Wish and Quest modules with dual Java chest GUI and Bedrock form UI.
+softdepend:
+  - GeyserMC
+  - Floodgate
+  - Vault
+  - PlaceholderAPI
+  - LuckPerms
+
+commands:
+  bank:
+    description: Open the bank menu or run bank commands.
+    usage: /<command> [deposit|withdraw|transfer|balance|set|give|clear] [args]
+    aliases: [banking]
+  redpacket:
+    description: Send or claim red packets.
+    usage: /<command> [create|claim|list|code] [args]
+    aliases: [rp, hb]
+  wish:
+    description: Open the wish (gacha) menu or draw.
+    usage: /<command> [draw|ten|history|pool] [args]
+    aliases: [pray, gacha]
+  quest:
+    description: Open the quest menu or run quest commands.
+    usage: /<command> [list|claim|reload] [args]
+    aliases: [tasks]
+
+permissions:
+  carboncore.bank:
+    description: Access to the bank module.
+    default: true
+  carboncore.bank.menu:
+    description: Open the bank GUI/forms.
+    default: true
+  carboncore.bank.deposit:
+    description: Deposit money into the bank.
+    default: true
+  carboncore.bank.withdraw:
+    description: Withdraw money from the bank.
+    default: true
+  carboncore.bank.transfer:
+    description: Transfer money between bank accounts.
+    default: true
+  carboncore.bank.balance:
+    description: Query own bank balance.
+    default: true
+  carboncore.bank.loan:
+    description: Access to bank loans and the credit score.
+    default: true
+  carboncore.bank.admin.set:
+    description: Admin - set another player's bank balance.
+    default: op
+  carboncore.bank.admin.give:
+    description: Admin - add or subtract from another player's bank balance.
+    default: op
+  carboncore.bank.admin.clear:
+    description: Admin - reset another player's bank account.
+    default: op
+  carboncore.redpacket:
+    description: Access to the red packet module.
+    default: true
+  carboncore.redpacket.menu:
+    description: Open the red packet GUI/forms.
+    default: true
+  carboncore.redpacket.create:
+    description: Create (send) red packets.
+    default: true
+  carboncore.redpacket.claim:
+    description: Claim red packets.
+    default: true
+  carboncore.redpacket.admin:
+    description: Admin - force expire or refund red packets.
+    default: op
+  carboncore.wish:
+    description: Access to the wish module.
+    default: true
+  carboncore.wish.menu:
+    description: Open the wish GUI/forms.
+    default: true
+  carboncore.wish.draw:
+    description: Draw from the wish pool.
+    default: true
+  carboncore.wish.history:
+    description: View own wish history.
+    default: true
+  carboncore.quest:
+    description: Access to the quest module.
+    default: true
+  carboncore.quest.menu:
+    description: Open the quest GUI/forms.
+    default: true
+  carboncore.quest.claim:
+    description: Claim completed quest rewards.
+    default: true
+  carboncore.quest.admin:
+    description: Admin - reload quest definitions.
+    default: op
+  carboncore.admin.reload:
+    description: Admin - reload CarbonCore configuration and messages.
+    default: op
+  carboncore.*:
+    description: All CarbonCore permissions.
+    default: op
+    children:
+      carboncore.bank: true
+      carboncore.bank.menu: true
+      carboncore.bank.deposit: true
+      carboncore.bank.withdraw: true
+      carboncore.bank.transfer: true
+      carboncore.bank.balance: true
+      carboncore.bank.loan: true
+      carboncore.bank.admin.set: true
+      carboncore.bank.admin.give: true
+      carboncore.bank.admin.clear: true
+      carboncore.redpacket: true
+      carboncore.redpacket.menu: true
+      carboncore.redpacket.create: true
+      carboncore.redpacket.claim: true
+      carboncore.redpacket.admin: true
+      carboncore.wish: true
+      carboncore.wish.menu: true
+      carboncore.wish.draw: true
+      carboncore.wish.history: true
+      carboncore.quest: true
+      carboncore.quest.menu: true
+      carboncore.quest.claim: true
+      carboncore.quest.admin: true
+      carboncore.admin.reload: true

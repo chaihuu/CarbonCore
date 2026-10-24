@@ -1,0 +1,160 @@
+# ============================================================
+# CarbonCore main configuration
+# 语言 Language: auto = follow server locale, or zh_cn / en_us
+# ============================================================
+language: auto
+
+database:
+  # SQLite file inside the plugin data folder
+  file: carboncore.db
+
+economy:
+  # Fallback symbol used when the Vault provider does not format currency
+  currency-symbol: "$"
+
+modules:
+
+  bank:
+    enabled: true
+    command-aliases: [bank]
+    # Per-player command cooldown in seconds (0 = disabled)
+    cooldown-seconds: 0
+    min-amount: 0.01
+    max-amount: 1000000.0
+    # Quick amounts shown as buttons in the GUI / forms
+    quick-amounts: [10, 50, 100, 500, 1000]
+    interest:
+      enabled: true
+      # Rate per settlement period, 0.01 = 1%
+      rate: 0.01
+      # Settlement period in hours
+      period-hours: 24
+      # How often (minutes) the async settlement task scans for due accounts
+      check-minutes: 5
+    loan:
+      # Bank loans with a simple credit score (loans go straight into the bank account)
+      enabled: true
+      initial-score: 600
+      min-score: 300
+      max-score: 850
+      # Score change on a fully repaid loan / missed payment / default
+      on-time-gain: 10
+      miss-penalty: 20
+      default-penalty: 50
+      # Credit line derived from the score (score min -> min-limit, max -> max-limit)
+      min-limit: 500.0
+      max-limit: 50000.0
+      # Per-period interest percent derived from the score (higher score, lower rate)
+      min-interest: 2.0
+      max-interest: 15.0
+      # Repayment period in hours; due_at rolls forward on every settlement / miss
+      period-hours: 72
+      max-active-loans: 3
+      # Missed payments before the loan is marked as defaulted
+      max-missed: 3
+      # Interest rate escalation per missed payment (0.10 = +10%)
+      late-escalation: 0.10
+      # How often (minutes) the async loan task scans for due loans
+      check-minutes: 5
+
+  redpacket:
+    enabled: true
+    command-aliases: [redpacket, hb]
+    cooldown-seconds: 3
+    min-total: 1.0
+    max-total: 100000.0
+    min-count: 1
+    max-count: 100
+    # Duration choices (seconds) offered in GUI / forms
+    durations-seconds: [60, 300, 600, 3600, 86400]
+    default-duration-seconds: 86400
+    # Every share is at least this much (保底不为零)
+    min-share: 0.01
+    # Expiry scan interval (seconds)
+    expire-check-seconds: 10
+    # Max number of password packets a player may have open at once
+    max-open-packets: 50
+
+  wish:
+    enabled: true
+    command-aliases: [wish, pray]
+    cooldown-seconds: 1
+    single-cost: 100.0
+    ten-cost: 900.0
+    pity:
+      # Guarantee a rare:true entry within this many pulls
+      enabled: true
+      threshold: 50
+    # History rows kept per player in the database
+    history-size: 200
+    # Weighted prize pool. Every entry:
+    #   id        - internal id
+    #   name      - display name (supports & color codes)
+    #   weight    - relative weight
+    #   rare      - true entries are covered by the pity system
+    #   reward.type  - item | money | command
+    #   reward.items    - list of {material, amount} (type=item)
+    #   reward.money    - amount (type=money)
+    #   reward.commands - list of console commands, {player} is replaced (type=command)
+    pool:
+      - id: wood_bundle
+        name: "&a木材礼包"
+        weight: 40
+        rare: false
+        reward:
+          type: item
+          items:
+            - material: OAK_LOG
+              amount: 32
+      - id: stone_bundle
+        name: "&7石材礼包"
+        weight: 40
+        rare: false
+        reward:
+          type: item
+          items:
+            - material: COBBLESTONE
+              amount: 64
+      - id: coin_small
+        name: "&e小额金币"
+        weight: 25
+        rare: false
+        reward:
+          type: money
+          money: 150.0
+      - id: golden_apple
+        name: "&6金苹果"
+        weight: 8
+        rare: false
+        reward:
+          type: item
+          items:
+            - material: GOLDEN_APPLE
+              amount: 2
+      - id: diamond_lucky
+        name: "&b钻石之幸"
+        weight: 4
+        rare: true
+        reward:
+          type: item
+          items:
+            - material: DIAMOND
+              amount: 5
+      - id: title_chosen
+        name: "&d天选之人称号"
+        weight: 1
+        rare: true
+        reward:
+          type: command
+          commands:
+            - "broadcast {player} 在祈愿中获得了天选之人!"
+
+  quest:
+    enabled: true
+    command-aliases: [quest, tasks]
+    cooldown-seconds: 0
+    # Quest definitions live in quests.yml
+    display-lines: 5
+
+placeholders:
+  enabled: true
